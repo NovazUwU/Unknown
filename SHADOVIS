@@ -9,6 +9,7 @@ local hum = cha:WaitForChild("Humanoid")
 local x = require(game:GetService("ReplicatedStorage").WeaponData)
 local types = {"SFOTH", "Sword", "Club", "Longsword", "Katana", "Axe", "Spear", "Domini", "Knife", "Aguman", "Trident", "Mallet", "Blade", "Gauntlets", "Lance", "Scythe", "Twin Blade", "Greatsword", "Falchion", "Fans", "Claws"}
 local request = http_request or request or HttpPost or syn.request
+local senv = getsenv(plr.PlayerScripts.Client)
 local hooked = {}
 _G.Weapon = nil 
 _G.WeaponType = nil 
@@ -213,7 +214,7 @@ end
 local window = lib:CreateWindow({
     Name = "Novaz#5792",
     Themeable = {
-        Info = {"Kalas A Skid"},
+        Info = {"Kalas A Skid", "Part Of Equip Thing By Kalas"},
         Credit = false, 
         Background = "",
         Visible = true
@@ -959,6 +960,57 @@ mainsec1:AddToggle({
 })
 
 mainsec1:AddToggle({
+    Name = "Auto Equip Weapon (Skill)", 
+    Value = false, 
+    Flag = "AEWS", 
+    Callback = function(state) klg = state 
+        while klg do 
+            if table.find((ppmr or {}), "Holy Charm F") then 
+                for i,v in pairs(debug.getupvalues(senv.IncrementInventory)[2]["Inventory"]) do 
+                    if type(v) == "table" and v[1] == "Holy Charm" then 
+                        game:GetService("ReplicatedStorage").RemoteEvent:FireServer("ChangeEquipment", i)
+                        task.wait(60)
+                    end 
+                end 
+            end 
+            if table.find((ppmr or {}), "Aurelion Hood F") then 
+                for i,v in pairs(debug.getupvalues(senv.IncrementInventory)[2]["Inventory"]) do 
+                    if type(v) == "table" and v[1] == "Aurelion Hood" then 
+                        game:GetService("ReplicatedStorage").RemoteEvent:FireServer("ChangeEquipment", i)
+                        task.wait(60)
+                    end 
+                end 
+            end 
+            if table.find((ppmr or {}), "Judgement Blade R") then 
+                for i,v in pairs(debug.getupvalues(senv.IncrementInventory)[2]["Inventory"]) do 
+                    if type(v) == "table" and v[1] == "Judgement Blade" then 
+                        game:GetService("ReplicatedStorage").RemoteEvent:FireServer("ChangeEquipment", i)
+                        task.wait(60)
+                    end 
+                end 
+            end 
+            if table.find((ppmr or {}), "Aurelion Hood R") then 
+                for i,v in pairs(debug.getupvalues(senv.IncrementInventory)[2]["Inventory"]) do 
+                    if type(v) == "table" and v[1] == "Aurelion Hood" then 
+                        game:GetService("ReplicatedStorage").RemoteEvent:FireServer("ChangeEquipment", i)
+                        task.wait(60)
+                    end 
+                end 
+            end 
+            if table.find((ppmr or {}), "Inferno Charm F") then 
+                for i,v in pairs(debug.getupvalues(senv.IncrementInventory)[2]["Inventory"]) do 
+                    if type(v) == "table" and v[1] == "Inferno Charm" then 
+                        game:GetService("ReplicatedStorage").RemoteEvent:FireServer("ChangeEquipment", i)
+                        task.wait(60)
+                    end 
+                end 
+            end 
+            task.wait()
+        end 
+    end 
+})
+
+mainsec1:AddToggle({
     Name = "Spam Selected Skill", 
     Value = false, 
     Flag = "SSS", 
@@ -973,6 +1025,12 @@ mainsec1:AddToggle({
                 end 
                 if table.find((ppmr or {}), "Judgement Blade R") then 
                     game:GetService("Players").LocalPlayer.Character.Combat.RemoteEvent:FireServer("Input", "EmpyreusJudgement Blade", math.random, "Cast")
+                end 
+                if table.find((ppmr or {}), "Aurelion Hood R") then 
+                    game:GetService("Players").LocalPlayer.Character.Combat.RemoteEvent:FireServer("Input", "AureusAurelion Hood", math.random, "Enroot")
+                end 
+                if table.find((ppmr or {}), "Inferno Charm F") then 
+                    game:GetService("Players").LocalPlayer.Character.Combat.RemoteEvent:FireServer("Input", "InfernoInferno Charm", math.random, "Stormage")
                 end 
             end 
             task.wait(.25)
@@ -994,7 +1052,7 @@ mainsec1:AddDropdown({
     Name = "Select Skill(s) To Spam", 
     Nothing = "Select...", 
     Multi = true,
-    List = {"Holy Charm F", "Aurelion Hood F", "Judgement Blade R"},
+    List = {"Holy Charm F", "Aurelion Hood F", "Judgement Blade R", "Aurelion Hood R", "Inferno Charm F"},
     Callback = function(selected) 
         ppmr = selected 
     end 
