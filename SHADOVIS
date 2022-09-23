@@ -731,11 +731,8 @@ section7:AddToggle({
     Keybind = {
         Mode = "Toggle", 
         Flag = "KEYBIND",
-        Callback = function(state) mmn = state 
-            while mmn do 
-                cha.Combat.RemoteEvent:FireServer(table.unpack((kk or {})))
-                task.wait((z or .1))
-            end 
+        Callback = function(state) 
+            r = state 
         end 
     },
     Callback = function(state) r = state
@@ -864,6 +861,15 @@ fsection2:AddToggle({
             end 
             task.wait()
         end 
+    end 
+})
+
+fsection2:AddToggle({
+    Name = "Hide Projectiles (No Lag)", 
+    Value = false, 
+    Flag = "HPNL", 
+    Callback = function(state)
+        rn = state 
     end 
 })
 
@@ -1038,7 +1044,7 @@ mainsec1:AddToggle({
 })
 
 game:GetService("RunService").RenderStepped:Connect(function()
-    if (mmn or r or tn) then 
+    if (mmn or r or tn or rn) then 
         for i,v in pairs(game:GetService("Workspace"):WaitForChild("Projectiles"):GetChildren()) do 
             if v:IsA("BasePart") then 
                 v.Transparency = 1
