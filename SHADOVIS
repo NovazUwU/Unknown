@@ -15,11 +15,11 @@ _G.WeaponType = nil
 _G.WeaponM1 = nil
 local queueteleport = (syn and syn.queue_on_teleport) or queue_on_teleport or (fluxus and fluxus.queue_on_teleport)
 
-for i,v in pairs(game:GetService("ReplicatedStorage").UnloadedMaps:GetChildren()) do 
+for i,v in pairs(game:GetService("ReplicatedStorage"):WaitForChild("UnloadedMaps"):GetChildren()) do 
     v.Parent = game.Workspace.Maps 
 end
 
-for i,v in pairs(game:GetService("ReplicatedStorage").UnloadedEnemies:GetChildren()) do 
+for i,v in pairs(game:GetService("ReplicatedStorage"):WaitForChild("UnloadedEnemies"):GetChildren()) do 
     v.Parent = game.Workspace.NPCs
 end
 
