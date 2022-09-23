@@ -951,6 +951,7 @@ mainsec1:AddToggle({
             end 
             if plr.PlayerGui.Interface:FindFirstChild("TextLabel") then 
                 game:GetService("ReplicatedStorage").RemoteEvent:FireServer("StartRaid", "Banland")
+                task.wait(15)
             end 
             task.wait()    
         end 
