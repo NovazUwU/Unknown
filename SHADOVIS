@@ -568,37 +568,28 @@ section4:AddSearchBox({
     end 
 })
 
-local childadded
-local tog = false
-
-section4:AddButton({
-    Name = "Webhook Notify Items", 
-    Callback = function()
-        if tog == false then 
-            tog = true 
-            lib.Notify({
-                Text = "Webhook Enabled"
-            })          
-            childadded = plr.PlayerGui.Interface.Container.Inventory.Items.ChildAdded:Connect(function(child)
-                for i,v in pairs(child:WaitForChild("ViewportFrame"):GetChildren()) do 
-                    if v.Name ~= "Camera" then
-                        for i1,v1 in pairs(child:GetChildren()) do 
-                            if (not string.find(v1.Name, "UI")) and (not string.find(v1.Name, "Viewport")) then 
-                                sendmsg("Collected : "..v.Name.." | Rarity : "..v1.Name, tonumber(0xff0000))
-                            end 
-                        end 
-                    end 
-                end 
-            end) 
-        elseif tog then
-            tog = false
-            lib.Notify({
-                Text = "Webhook Disabled"
-            })
-            childadded:Disconnect()
-        end 
+section4:AddToggle({
+    Name = "Webhook Notify Items",
+    Value = false, 
+    Flag = "WNI", 
+    Callback = function(state) 
+        tog = state 
     end 
 })
+
+plr.PlayerGui.Interface.Container.Inventory.Items.ChildAdded:Connect(function(child)
+    if tog then 
+        for i,v in pairs(child:WaitForChild("ViewportFrame"):GetChildren()) do 
+            if v.Name ~= "Camera" then
+                for i1,v1 in pairs(child:GetChildren()) do 
+                    if (not string.find(v1.Name, "UI")) and (not string.find(v1.Name, "Viewport")) then 
+                        sendmsg("Collected : "..v.Name.." | Rarity : "..v1.Name, tonumber(0xff0000))
+                    end 
+                end 
+            end 
+        end 
+    end 
+end) 
 
 section4:AddTextBox({
     Name = "Enter Webhook", 
