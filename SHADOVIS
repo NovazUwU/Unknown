@@ -936,7 +936,7 @@ mainsec1:AddToggle({
             if (not game:GetService("Workspace"):FindFirstChild("Cutscenes")) then 
                 game:GetService("ReplicatedStorage").RemoteEvent:FireServer("StartRaid", "Banland")
             end
-            task.wait(15)
+            task.wait(60)
         end 
     end 
 })
@@ -1038,6 +1038,7 @@ mainsec1:AddToggle({
                     task.wait(.5)
                 end 
             end 
+            task.wait()
         end 
     end 
 })
