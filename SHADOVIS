@@ -969,7 +969,7 @@ mainsec1:AddToggle({
                 for i,v in pairs(debug.getupvalues(senv.IncrementInventory)[2]["Inventory"]) do 
                     if type(v) == "table" and v[1] == "Holy Charm" then 
                         game:GetService("ReplicatedStorage").RemoteEvent:FireServer("ChangeEquipment", i)
-                        task.wait(60)
+                        task.wait(6)
                     end 
                 end 
             end 
@@ -977,7 +977,7 @@ mainsec1:AddToggle({
                 for i,v in pairs(debug.getupvalues(senv.IncrementInventory)[2]["Inventory"]) do 
                     if type(v) == "table" and v[1] == "Aurelion Hood" then 
                         game:GetService("ReplicatedStorage").RemoteEvent:FireServer("ChangeEquipment", i)
-                        task.wait(60)
+                        task.wait(6)
                     end 
                 end 
             end 
@@ -985,7 +985,7 @@ mainsec1:AddToggle({
                 for i,v in pairs(debug.getupvalues(senv.IncrementInventory)[2]["Inventory"]) do 
                     if type(v) == "table" and v[1] == "Judgement Blade" then 
                         game:GetService("ReplicatedStorage").RemoteEvent:FireServer("ChangeEquipment", i)
-                        task.wait(60)
+                        task.wait(6)
                     end 
                 end 
             end 
@@ -993,7 +993,7 @@ mainsec1:AddToggle({
                 for i,v in pairs(debug.getupvalues(senv.IncrementInventory)[2]["Inventory"]) do 
                     if type(v) == "table" and v[1] == "Aurelion Hood" then 
                         game:GetService("ReplicatedStorage").RemoteEvent:FireServer("ChangeEquipment", i)
-                        task.wait(60)
+                        task.wait(6)
                     end 
                 end 
             end 
@@ -1001,7 +1001,7 @@ mainsec1:AddToggle({
                 for i,v in pairs(debug.getupvalues(senv.IncrementInventory)[2]["Inventory"]) do 
                     if type(v) == "table" and v[1] == "Inferno Charm" then 
                         game:GetService("ReplicatedStorage").RemoteEvent:FireServer("ChangeEquipment", i)
-                        task.wait(60)
+                        task.wait(6)
                     end 
                 end 
             end 
@@ -1019,26 +1019,21 @@ mainsec1:AddToggle({
             if getclosestmob() ~= nil then 
                 if table.find((ppmr or {}), "Holy Charm F") then 
                     game:GetService("Players").LocalPlayer.Character.Combat.RemoteEvent:FireServer("Input", "HolyHoly Charm", math.random, "Meteor")
-                    task.wait(.2)
                 end 
                 if table.find((ppmr or {}), "Aurelion Hood F") then 
                     game:GetService("Players").LocalPlayer.Character.Combat.RemoteEvent:FireServer("Input", "AureusAurelion Hood", math.random, "Darkness")
-                    task.wait(.2)
                 end 
                 if table.find((ppmr or {}), "Judgement Blade R") then 
                     game:GetService("Players").LocalPlayer.Character.Combat.RemoteEvent:FireServer("Input", "EmpyreusJudgement Blade", math.random, "Cast")
-                    task.wait(.2)
                 end 
                 if table.find((ppmr or {}), "Aurelion Hood R") then 
                     game:GetService("Players").LocalPlayer.Character.Combat.RemoteEvent:FireServer("Input", "AureusAurelion Hood", math.random, "Enroot")
-                    task.wait(.5)
                 end 
                 if table.find((ppmr or {}), "Inferno Charm F") then 
                     game:GetService("Players").LocalPlayer.Character.Combat.RemoteEvent:FireServer("Input", "InfernoInferno Charm", math.random, "Stormage")
-                    task.wait(.5)
                 end 
             end 
-            task.wait()
+            task.wait(.35)
         end 
     end 
 })
