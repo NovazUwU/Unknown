@@ -359,7 +359,7 @@ section2:AddToggle({
                     cha.Combat.RemoteEvent:FireServer("Input", _G.Weapon, math.random, _G.WeaponM1, v)
                 end 
             end 
-            task.wait((.1 or g))
+            task.wait((g or .1))
         end 
     end 
 })
@@ -422,9 +422,13 @@ section3:AddToggle({
     Callback = function(state) j = state 
         while j do 
             for i,v in pairs(game:GetService("Workspace").Projectiles:GetChildren()) do 
-                if v:FindFirstChild("ProximityPrompt") then 
-                    fireproximityprompt(v:FindFirstChild("ProximityPrompt"))
-                end 
+                if v.Name == "Cubit" then 
+                    for i1,v1 in pairs(v:GetChildren()) do 
+                        if v1.Name ~= "Highlight" then 
+                            fireproximityprompt(v1)
+                        end 
+                    end 
+                end
             end 
             for i,v in pairs(game:GetService("Workspace")["Client Cubits"]:GetChildren()) do 
                 if v.Name == "Cubit" then 
@@ -448,11 +452,16 @@ section3:AddToggle({
         while aa do 
             if bb == "Knight Amulet" then 
                 game:GetService("Players").LocalPlayer.Character.Combat.RemoteEvent:FireServer("Input", "Heavy KnightForgotten Knight Amulet", math.random, "Evade")
-            elseif bb == "Shield" then 
-                for i,v in pairs(cha.Equipment:GetChildren()) do 
-                    if x[v.Name] and x[v.Name].Type == "Shield" then 
-                        cha.Combat.RemoteEvent:FireServer("Input", v.Name, math.random, "Block")
-                    end
+            elseif bb == "Block" then 
+                for i,v in pairs(game.Players.LocalPlayer.Character.Equipment:GetChildren()) do 
+                    if x[v.Name] and game:GetService("ReplicatedStorage").CombatData:FindFirstChild(x[v.Name].Type) then
+                        local req = require(game:GetService("ReplicatedStorage").CombatData[x[v.Name].Type])
+                        for i1,v1 in pairs(debug.getconstants(req)) do 
+                            if v1 == "Block" then 
+                                cha.Combat.RemoteEvent:FireServer("Input", v.Name, math.random, "Block")
+                            end 
+                        end 
+                    end 
                 end 
             end 
             task.wait(.1)
@@ -462,7 +471,7 @@ section3:AddToggle({
 
 section3:AddDropdown({
     Name = "Select Godmode", 
-    List = {"Knight Amulet", "Shield"}, 
+    List = {"Knight Amulet", "Block"}, 
     Nothing = "Select...", 
     Flag = "SG",
     Callback = function(selected)
@@ -773,9 +782,10 @@ fsection1:AddToggle({
                 firetouchinterest(hrp, game:GetService("Workspace").AncestralAltar.Brazier, 1)
                 wait(.1)
                 mousemoveabs(830, 670)
-                wait(.1)
+                wait(.5)
                 mouse1click()
             end 
+            task.wait()
         end
     end 
 })
@@ -1030,7 +1040,7 @@ mainsec1:AddToggle({
 })
 
 game:GetService("RunService").RenderStepped:Connect(function()
-    if tn then 
+    if (mmn or r or tn) then 
         for i,v in pairs(game:GetService("Workspace"):WaitForChild("Projectiles"):GetChildren()) do 
             if v:IsA("BasePart") then 
                 v.Transparency = 1
