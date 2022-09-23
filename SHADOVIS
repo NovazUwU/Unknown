@@ -445,37 +445,35 @@ section3:AddToggle({
 })
 
 section3:AddToggle({
-    Name = "Godmode", 
+    Name = "Knight Amulet Godmode", 
     Value = false, 
     Flag = "GODMODEKNIGHT", 
     Callback = function(state) aa = state 
         while aa do 
-            if bb == "Knight Amulet" then 
-                game:GetService("Players").LocalPlayer.Character.Combat.RemoteEvent:FireServer("Input", "Heavy KnightForgotten Knight Amulet", math.random, "Evade")
-            elseif bb == "Block" then 
-                for i,v in pairs(game.Players.LocalPlayer.Character.Equipment:GetChildren()) do 
-                    if x[v.Name] and game:GetService("ReplicatedStorage").CombatData:FindFirstChild(x[v.Name].Type) then
-                        local req = require(game:GetService("ReplicatedStorage").CombatData[x[v.Name].Type])
-                        for i1,v1 in pairs(debug.getconstants(req)) do 
-                            if v1 == "Block" then 
-                                cha.Combat.RemoteEvent:FireServer("Input", v.Name, math.random, "Block")
-                            end 
+            game:GetService("Players").LocalPlayer.Character.Combat.RemoteEvent:FireServer("Input", "Heavy KnightForgotten Knight Amulet", math.random, "Evade")
+            task.wait(.1)
+        end 
+    end 
+})
+
+section3:AddToggle({
+    Name = "Block Godmode", 
+    Value = false, 
+    Flag = "BGM", 
+    Callback = function(state) qp = state 
+        while qp do 
+            for i,v in pairs(game.Players.LocalPlayer.Character.Equipment:GetChildren()) do 
+                if x[v.Name] and game:GetService("ReplicatedStorage").CombatData:FindFirstChild(x[v.Name].Type) then
+                    local req = require(game:GetService("ReplicatedStorage").CombatData[x[v.Name].Type])
+                    for i1,v1 in pairs(debug.getconstants(req)) do 
+                        if v1 == "Block" then 
+                            cha.Combat.RemoteEvent:FireServer("Input", v.Name, math.random, "Block")
                         end 
                     end 
                 end 
             end 
             task.wait(.1)
         end 
-    end 
-})
-
-section3:AddDropdown({
-    Name = "Select Godmode", 
-    List = {"Knight Amulet", "Block"}, 
-    Nothing = "Select...", 
-    Flag = "SG",
-    Callback = function(selected)
-        bb = selected
     end 
 })
 
