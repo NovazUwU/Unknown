@@ -1019,21 +1019,25 @@ mainsec1:AddToggle({
             if getclosestmob() ~= nil then 
                 if table.find((ppmr or {}), "Holy Charm F") then 
                     game:GetService("Players").LocalPlayer.Character.Combat.RemoteEvent:FireServer("Input", "HolyHoly Charm", math.random, "Meteor")
+                    task.wait(.2)
                 end 
                 if table.find((ppmr or {}), "Aurelion Hood F") then 
                     game:GetService("Players").LocalPlayer.Character.Combat.RemoteEvent:FireServer("Input", "AureusAurelion Hood", math.random, "Darkness")
+                    task.wait(.2)
                 end 
                 if table.find((ppmr or {}), "Judgement Blade R") then 
                     game:GetService("Players").LocalPlayer.Character.Combat.RemoteEvent:FireServer("Input", "EmpyreusJudgement Blade", math.random, "Cast")
+                    task.wait(.2)
                 end 
                 if table.find((ppmr or {}), "Aurelion Hood R") then 
                     game:GetService("Players").LocalPlayer.Character.Combat.RemoteEvent:FireServer("Input", "AureusAurelion Hood", math.random, "Enroot")
+                    task.wait(.5)
                 end 
                 if table.find((ppmr or {}), "Inferno Charm F") then 
                     game:GetService("Players").LocalPlayer.Character.Combat.RemoteEvent:FireServer("Input", "InfernoInferno Charm", math.random, "Stormage")
+                    task.wait(.5)
                 end 
             end 
-            task.wait(.25)
         end 
     end 
 })
