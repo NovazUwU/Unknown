@@ -1010,6 +1010,22 @@ mainsec1:AddToggle({
                     end 
                 end 
             end 
+            if table.find((ppmr or {}), "Solar Staff M1") then 
+                for i,v in pairs(debug.getupvalues(senv.IncrementInventory)[2]["Inventory"]) do 
+                    if type(v) == "table" and v[1] == "Solar Staff" then 
+                        game:GetService("ReplicatedStorage").RemoteEvent:FireServer("ChangeEquipment", i)
+                        task.wait(6)
+                    end 
+                end 
+            end 
+            if table.find((ppmr or {}), "Darkmatter Fists Smash") then 
+                for i,v in pairs(debug.getupvalues(senv.IncrementInventory)[2]["Inventory"]) do 
+                    if type(v) == "table" and v[1] == "Darkmatter Fists" then 
+                        game:GetService("ReplicatedStorage").RemoteEvent:FireServer("ChangeEquipment", i)
+                        task.wait(6)
+                    end 
+                end 
+            end 
             task.wait()
         end 
     end 
@@ -1037,8 +1053,14 @@ mainsec1:AddToggle({
                 if table.find((ppmr or {}), "Inferno Charm F") then 
                     game:GetService("Players").LocalPlayer.Character.Combat.RemoteEvent:FireServer("Input", "InfernoInferno Charm", math.random, "Stormage")
                 end 
+                if table.find((ppmr or {}), "Solar Staff M1") then 
+                    game:GetService("Players").LocalPlayer.Character.Combat.RemoteEvent:FireServer("Input", "Solar Staff", math.random, "Annihilate", getclosestmob().HumanoidRootPart.Position)
+                end 
+                if table.find((ppmr or {}), "Darkmatter Fists Smash") then 
+                    game:GetService("Players").LocalPlayer.Character.Combat.RemoteEvent:FireServer("Input", "MatterDarkmatter Fists", math.random, "Pound")
+                end 
             end 
-            task.wait(.35)
+            task.wait(#(ppmr or {}) * .25)
         end 
     end 
 })
@@ -1057,7 +1079,7 @@ mainsec1:AddDropdown({
     Name = "Select Skill(s) To Spam", 
     Nothing = "Select...", 
     Multi = true,
-    List = {"Holy Charm F", "Aurelion Hood F", "Judgement Blade R", "Aurelion Hood R", "Inferno Charm F"},
+    List = {"Holy Charm F", "Aurelion Hood F", "Judgement Blade R", "Aurelion Hood R", "Inferno Charm F", "Solar Staff M1", "Darkmatter Fists Smash"},
     Callback = function(selected) 
         ppmr = selected 
     end 
